@@ -4,9 +4,12 @@ import openai
 
 # Function to speak response
 def speak_response(response):
-    engine = pyttsx3.init()
-    engine.say(response)
-    engine.runAndWait()
+    try:
+        engine = pyttsx3.init()
+        engine.say(response)
+        engine.runAndWait()
+    except Exception as e:
+        st.error("Error initializing speech engine: {}".format(e))
 
 # Define a function to get response from ChatGPT API
 def get_chatgpt_response(user_input):
@@ -19,7 +22,7 @@ def get_chatgpt_response(user_input):
 
 # Define a dictionary of questions and answers
 question_answer_pairs = {
- "What is your name?": "I am a chatbot.",
+   "What is your name?": "I am a chatbot.",
     "Hii": "Hii I am LegalEase.",
     "Hello": "Hi! How can I help you?",
     "What can you do?": "I can answer your questions and chat with you.",
@@ -94,17 +97,14 @@ question_answer_pairs = {
     "What are the legal requirements for leasing property in India?": "Leasing property in India requires drafting a lease agreement that includes details such as the parties involved, lease term, rent amount, security deposit, and terms of renewal and termination.",
     "How do I comply with data protection laws when collecting personal information in India?": "Compliance with data protection laws in India, such as the Personal Data Protection Bill, involves obtaining consent for data collection, ensuring data security measures, and providing individuals with rights regarding their personal data.",
     "What are the legal considerations for drafting employment contracts in India?": "Drafting employment contracts in India requires addressing key terms such as job responsibilities, compensation, benefits, termination clauses, non-compete clauses, and dispute resolution mechanisms in compliance with Indian labor laws."
+
 }
 
-
-# Set title and header
 st.title("LegalEase")
 st.header("Chat with LegalEase")
 
-# Text field for entering messages
 new_message = st.text_input("Enter your message:", "")
 
-# If the user sends a text message, display the bot's response
 if st.button("Send"):
     if new_message in question_answer_pairs:
         bot_response = question_answer_pairs[new_message]
@@ -114,12 +114,5 @@ if st.button("Send"):
     st.text("⚖️ LegalEase: " + bot_response)
     speak_response(bot_response)
 
-# Button for voice input with spoken prompt
 if st.button("Speak"):
-    user_input = recognize_speech()
-    if user_input:
-        speak_response("Hi! How can I help you?")  # Speak prompt
-        st.write("How can I help you?")
-        response = get_chatgpt_response(user_input)
-        st.text("⚖️ LegalEase: " + response)
-        speak_response(response)
+    st.write("Speech recognition functionality is not implemented yet.")
