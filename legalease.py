@@ -51,3 +51,4 @@ if st.button("Send"):
 
     st.text("⚖️ LegalEase: " + bot_response)
 
+
