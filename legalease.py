@@ -20,7 +20,7 @@ question_answer_pairs = {
     "Hello": "Hi! How can I help you?",
     "What can you do?": "I can answer your questions and chat with you.",
     "i want some legal suggestion": "to resolve legal issue",
-    "I can answer your questions and chat with you.",
+    "I can answer your questions and chat with you.":
     
     "I want to create a legal contract": """Creating a legally-binding contract involves several key steps:
 1. Agreement
@@ -50,3 +50,4 @@ if st.button("Send"):
         bot_response = get_chatgpt_response(new_message)
 
     st.text("⚖️ LegalEase: " + bot_response)
+
